@@ -86,9 +86,8 @@ class Myriad extends PluginBase
     /**
      * @return Myriad
      */
-    public static function getInstance() : Myriad
-    {
-        return Server::getInstance()->getPluginManager()->getPlugin("MyriadHC");
+    public static function getInstance() {
+        return Server::getInstance()->getPluginManager()->getPlugin("MyriadHC"); //returns null
     }
 
     /**
