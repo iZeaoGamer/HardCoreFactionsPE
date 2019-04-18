@@ -11,10 +11,10 @@ namespace friscowz\hc\task;
 
 use friscowz\hc\MDPlayer;
 use friscowz\hc\Myriad;
-use pocketmine\scheduler\PluginTask;
+use pocketmine\scheduler\Task;
 use pocketmine\utils\TextFormat;
 
-class RestartTask extends PluginTask
+class RestartTask extends Task
 {
     private $plugin;
     private $time = 60*240*2;
@@ -25,9 +25,8 @@ class RestartTask extends PluginTask
      */
     public function __construct (Myriad $owner)
     {
-        parent::__construct($owner);
         $this->setPlugin($owner);
-        $this->setHandler($this->getPlugin()->getServer()->getScheduler()->scheduleRepeatingTask($this, 20));
+        $this->setHandler($this->getPlugin()->getScheduler()->scheduleRepeatingTask($this, 20));
     }
 
     /**
