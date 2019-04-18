@@ -12,11 +12,11 @@ use friscowz\hc\MDPlayer;
 use friscowz\hc\modules\ModulesManager;
 use friscowz\hc\modules\SOTW;
 use friscowz\hc\Myriad;
-use pocketmine\scheduler\PluginTask;
+use pocketmine\scheduler\Task;
 use pocketmine\utils\TextFormat;
 use friscowz\hc\utils\Utils;
 
-class HudTask extends PluginTask
+class HudTask extends Task
 {
     private $plugin;
     private $player;
@@ -28,10 +28,9 @@ class HudTask extends PluginTask
      */
     public function __construct (Myriad $plugin, MDPlayer $player)
     {
-        parent::__construct($plugin);
         $this->setPlayer($player);
         $this->setPlugin($plugin);
-        $this->setHandler($this->getPlugin()->getServer()->getScheduler()->scheduleRepeatingTask($this, 10));
+        $this->setHandler($this->getPlugin()->getScheduler()->scheduleRepeatingTask($this, 10));
     }
 
     /**
