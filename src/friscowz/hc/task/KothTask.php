@@ -12,9 +12,9 @@ use friscowz\hc\MDPlayer;
 use friscowz\hc\modules\ModulesManager;
 use friscowz\hc\Myriad;
 use pocketmine\math\Vector3;
-use pocketmine\scheduler\PluginTask;
+use pocketmine\scheduler\Task;
 
-class KothTask extends PluginTask
+class KothTask extends Task
 {
 
     private $plugin;
@@ -32,10 +32,9 @@ class KothTask extends PluginTask
      */
     public function __construct (Myriad $plugin, string $name)
     {
-        parent::__construct($plugin);
         $this->setPlugin($plugin);
         $this->setName($name);
-        $this->setHandler($this->getPlugin()->getServer()->getScheduler()->scheduleRepeatingTask($this, 20));
+        $this->setHandler($this->getPlugin()->getScheduler()->scheduleRepeatingTask($this, 20));
         $this->setTime(Myriad::getData("KothTime"));
     }
 
