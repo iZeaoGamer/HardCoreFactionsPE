@@ -11,9 +11,9 @@ namespace friscowz\hc\task;
 
 use friscowz\hc\Myriad;
 use pocketmine\entity\Entity;
-use pocketmine\scheduler\PluginTask;
+use pocketmine\scheduler\Task;
 
-class KillEntityTask extends PluginTask
+class KillEntityTask extends Task
 {
     private $entity;
     private $time = 30;
@@ -25,9 +25,8 @@ class KillEntityTask extends PluginTask
      */
     public function __construct(Myriad $owner, Entity $entity)
     {
-        parent::__construct($owner);
         $this->setEntity($entity);
-        $this->setHandler($owner->getServer()->getScheduler()->scheduleRepeatingTask($this, 20));
+        $this->setHandler($owner->getScheduler()->scheduleRepeatingTask($this, 20));
     }
 
     /**
