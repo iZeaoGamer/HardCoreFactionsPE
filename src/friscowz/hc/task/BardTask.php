@@ -11,16 +11,16 @@ namespace friscowz\hc\task;
 
 use friscowz\hc\MDPlayer;
 use friscowz\hc\Myriad;
-use pocketmine\scheduler\PluginTask;
+use pocketmine\scheduler\Task;
 use pocketmine\item\ItemIds;
 use pocketmine\entity\Effect;
 
-class BardTask extends PluginTask
+class BardTask extends Task
 {
     public function __construct(Myriad $plugin)
     {
-        parent::__construct($plugin);
-        $plugin->getServer()->getScheduler()->scheduleRepeatingTask($this, 20);
+    $this->plugin = $plugin;
+        $plugin->getScheduler()->scheduleRepeatingTask($this, 20);
     }
 
     /**
