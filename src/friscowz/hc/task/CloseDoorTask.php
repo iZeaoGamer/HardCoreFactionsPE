@@ -12,9 +12,9 @@ namespace friscowz\hc\task;
 use friscowz\hc\Myriad;
 use pocketmine\block\Door;
 use pocketmine\item\Item;
-use pocketmine\scheduler\PluginTask;
+use pocketmine\scheduler\Task;
 
-class CloseDoorTask extends PluginTask
+class CloseDoorTask extends Task
 {
     private $door;
     private $plate;
@@ -29,7 +29,7 @@ class CloseDoorTask extends PluginTask
         parent::__construct(Myriad::getInstance());
         $this->setDoor($door);
         $this->plate = $plate;
-        $this->setHandler(Myriad::getInstance()->getServer()->getScheduler()->scheduleRepeatingTask($this, 10));
+        $this->setHandler(Myriad::getInstance()->getScheduler()->scheduleRepeatingTask($this, 10));
     }
 
     /**
