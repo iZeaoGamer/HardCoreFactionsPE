@@ -13,9 +13,9 @@ use friscowz\hc\MDPlayer;
 use friscowz\hc\modules\ModulesManager;
 use friscowz\hc\Myriad;
 use pocketmine\entity\Zombie;
-use pocketmine\scheduler\PluginTask;
+use pocketmine\scheduler\Task;
 
-class ZombieTask extends PluginTask
+class ZombieTask extends Task
 {
     private $plugin;
     private $time = 300;
@@ -30,11 +30,10 @@ class ZombieTask extends PluginTask
      */
     public function __construct(Myriad $owner, Zombie $entity, MDPlayer $player)
     {
-        parent::__construct($owner);
         $this->setPlugin($owner);
         $this->entity = $entity;
         $this->player = $player;
-        $this->setHandler($this->getPlugin()->getServer()->getScheduler()->scheduleRepeatingTask($this, 20));
+        $this->setHandler($this->getPlugin()->getScheduler()->scheduleRepeatingTask($this, 20));
     }
 
     /**
