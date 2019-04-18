@@ -14,20 +14,19 @@ use friscowz\hc\tiles\PotionSpawner;
 use friscowz\hc\utils\Utils;
 use friscowz\hc\Myriad;
 use pocketmine\entity\Human;
-use pocketmine\scheduler\PluginTask;
+use pocketmine\scheduler\Task;
 use pocketmine\tile\Chest;
 use pocketmine\utils\TextFormat;
 
-class SpawnersTask extends PluginTask
+class SpawnersTask extends Task
 {
     private $plugin;
     private $time = 120;
 
     public function __construct(Myriad $plugin)
     {
-        parent::__construct($plugin);
         $this->setPlugin($plugin);
-        $plugin->getServer()->getScheduler()->scheduleRepeatingTask($this, 20);
+        $plugin->getScheduler()->scheduleRepeatingTask($this, 20);
     }
 
     /**
