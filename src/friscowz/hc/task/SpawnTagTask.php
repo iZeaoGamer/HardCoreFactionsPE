@@ -11,20 +11,19 @@ namespace friscowz\hc\task;
 
 use friscowz\hc\MDPlayer;
 use friscowz\hc\Myriad;
-use pocketmine\scheduler\PluginTask;
+use pocketmine\scheduler\Task;
 
-class SpawnTagTask extends PluginTask
+class SpawnTagTask extends Task
 {
     private $plugin;
     private $player;
 
     public function __construct(Myriad $plugin, MDPlayer $player)
     {
-        parent::__construct($plugin);
         $this->setPlugin($plugin);
         $this->setPlayer($player);
         $this->getPlayer()->setTagtime(30);
-        $this->setHandler($this->getPlugin()->getServer()->getScheduler()->scheduleRepeatingTask($this, 20));
+        $this->setHandler($this->getPlugin()->getScheduler()->scheduleRepeatingTask($this, 20));
     }
 
     /**
