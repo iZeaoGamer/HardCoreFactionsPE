@@ -12,9 +12,9 @@ namespace friscowz\hc\task;
 use friscowz\hc\MDPlayer;
 use friscowz\hc\Myriad;
 use pocketmine\math\Vector3;
-use pocketmine\scheduler\PluginTask;
+use pocketmine\scheduler\Task;
 
-class Teleport extends PluginTask
+class Teleport extends Task
 {
     private $plugin;
     private $time = 0;
@@ -32,14 +32,13 @@ class Teleport extends PluginTask
      */
     public function __construct (Myriad $plugin, MDPlayer $player, string $message, int $time = 1, Vector3 $pos)
     {
-        parent::__construct($plugin);
         $this->setPlugin($plugin);
         $this->setPlayer($player);
         $this->setMessage($message);
         $this->setTime($time);
         $this->setPos($pos);
         $player->setTeleporting(true);
-        $this->setHandler($this->getPlugin()->getServer()->getScheduler()->scheduleRepeatingTask($this, 20));
+        $this->setHandler($this->getPlugin()->getScheduler()->scheduleRepeatingTask($this, 20));
     }
 
     /**
