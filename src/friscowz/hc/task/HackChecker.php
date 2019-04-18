@@ -15,10 +15,10 @@ use pocketmine\item\Item;
 use pocketmine\math\Vector3;
 use pocketmine\network\mcpe\protocol\AddPlayerPacket;
 use pocketmine\network\mcpe\protocol\RemoveEntityPacket;
-use pocketmine\scheduler\PluginTask;
+use pocketmine\scheduler\Task;
 use pocketmine\utils\UUID;
 
-class HackChecker extends PluginTask
+class HackChecker extends Task
 {
     private $plugin;
     private $player;
@@ -31,10 +31,9 @@ class HackChecker extends PluginTask
      */
     public function __construct(Myriad $plugin, MDPlayer $player)
     {
-        parent::__construct($plugin);
         $this->setPlayer($player);
         $this->setPlugin($plugin);
-        $this->setHandler($this->getPlugin()->getServer()->getScheduler()->scheduleRepeatingTask($this, 10));
+        $this->setHandler($this->getPlugin()->getScheduler()->scheduleRepeatingTask($this, 10));
     }
 
 
