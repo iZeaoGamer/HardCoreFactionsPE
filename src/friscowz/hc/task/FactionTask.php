@@ -11,9 +11,9 @@ namespace friscowz\hc\task;
 
 use friscowz\hc\MDPlayer;
 use friscowz\hc\Myriad;
-use pocketmine\scheduler\PluginTask;
+use pocketmine\scheduler\Task;
 
-class FactionTask extends PluginTask
+class FactionTask extends Task
 {
     private $plugin;
 
@@ -23,9 +23,8 @@ class FactionTask extends PluginTask
      */
     public function __construct(Myriad $plugin)
     {
-        parent::__construct($plugin);
         $this->setPlugin($plugin);
-        $this->setHandler($this->getPlugin()->getServer()->getScheduler()->scheduleRepeatingTask($this, (20*60) * 15)); // 5Mins
+        $this->setHandler($this->getPlugin()->getScheduler()->scheduleRepeatingTask($this, (20*60) * 15)); // 5Mins
     }
 
     /**
