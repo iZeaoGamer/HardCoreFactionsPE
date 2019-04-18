@@ -12,10 +12,10 @@ namespace friscowz\hc\task;
 use friscowz\hc\MDPlayer;
 use friscowz\hc\Myriad;
 use friscowz\hc\utils\Utils;
-use pocketmine\scheduler\PluginTask;
+use pocketmine\scheduler\Task;
 use pocketmine\utils\TextFormat;
 
-class InviteTask extends PluginTask
+class InviteTask extends Task
 {
     private $plugin;
     private $time = 30;
@@ -23,10 +23,9 @@ class InviteTask extends PluginTask
 
     public function __construct(Myriad $owner, MDPlayer $player)
     {
-        parent::__construct($owner);
         $this->setPlugin($owner);
         $this->setPlayer($player);
-        $this->setHandler($this->getPlugin()->getServer()->getScheduler()->scheduleRepeatingTask($this, 20));
+        $this->setHandler($this->getPlugin()->getScheduler()->scheduleRepeatingTask($this, 20));
     }
 
     /**
