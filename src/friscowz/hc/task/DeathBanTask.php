@@ -11,9 +11,9 @@ namespace friscowz\hc\task;
 
 use friscowz\hc\modules\ModulesManager;
 use friscowz\hc\Myriad;
-use pocketmine\scheduler\PluginTask;
+use pocketmine\scheduler\Task;
 
-class DeathBanTask extends PluginTask
+class DeathBanTask extends Task
 {
     private $plugin;
 
@@ -23,9 +23,8 @@ class DeathBanTask extends PluginTask
      */
     public function __construct (Myriad $plugin)
     {
-        parent::__construct($plugin);
         $this->setPlugin($plugin);
-        $this->setHandler($this->getPlugin()->getServer()->getScheduler()->scheduleRepeatingTask($this, 20));
+        $this->setHandler($this->getPlugin()->getScheduler()->scheduleRepeatingTask($this, 20));
     }
 
     /**
