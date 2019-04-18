@@ -12,9 +12,9 @@ namespace friscowz\hc\task;
 use friscowz\hc\MDPlayer;
 use friscowz\hc\Myriad;
 use pocketmine\level\Position;
-use pocketmine\scheduler\PluginTask;
+use pocketmine\scheduler\Task;
 
-class KickTask extends PluginTask
+class KickTask extends Task
 {
     private $message = "You got kicked by an admin !";
     private $plugin;
@@ -30,10 +30,9 @@ class KickTask extends PluginTask
      */
     public function __construct (Myriad $owner, string $message, MDPlayer $player, bool $spawn = false)
     {
-        parent::__construct($owner);
         $this->setSpawn($spawn);
         $this->setPlugin($owner);
-        $this->getPlugin()->getServer()->getScheduler()->scheduleDelayedTask($this, 20);
+        $this->getPlugin()->getScheduler()->scheduleDelayedTask($this, 20);
         $this->setPlayer($player);
         $this->setMessage($message);
     }
